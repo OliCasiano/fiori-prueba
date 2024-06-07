@@ -1,12 +1,31 @@
 <mvc:View controllerName="capgemini.invoice.controller.MainView"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}">
         <content>
             <Panel id="_IDGenPanel1" headerText="{i18n>selectionScreen}">
                 <Label id="labelShipName" labelFor="shipName" text="{i18n>shipName}" class="sapUISmallMargin"/>
-                <Input  id="shipName" width="200px" class="sapUISmallMarginEnd"/>
+                <Input  id="shipName" value="{selectionScreen>/ShipName}" width="200px" class="sapUISmallMarginEnd"/>
                 <Label  id="labelCountry" text="{i18n>country}" class="sapUISmallMarginEnd"/>
+                <Select id="slCountry"  selectedKey="{selectionScreen>/CountryKey}" 
+                                        forceSelection="false" 
+                                        items="{selectionScreen>/Countries}">
+                    <items>
+                        <core:Item key="{selectionScreen>key}" text="{selectionScreen>text}"/>
+                    </items>
+                </Select>
+                <Button id="btnFilter" 
+                        text="{i18n>btnFilter}" 
+                        icon="sap-icon://filter" 
+                        press="onFilter" 
+                        class="sapUISmallMarginEnd"/>
+                        
+                <Button id="btnClearFilters"
+                        text="{i18n>btnClearFilters}"
+                        icon="sap-icon://clear-filter"
+                        press="onClearFilter"
+                        class="sapUISmallMarginEnd" />
             </Panel>
         </content>
     </Page>
